@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <h1>用户注册</h1>
+    </header>
+    <main>
+        <!-- 有序列表ol：注册步骤 -->
+        <h2>注册步骤</h2>
+        <ol>
+            <li>填写基础个人信息</li>
+            <li>完善爱好、头像等补充资料</li>
+            <li>阅读注册须知，提交完成注册</li>
+        </ol>
+
+        <!-- 无序列表ul：注册注意事项 -->
+        <h2>注册注意事项</h2>
+        <ul>
+            <li>用户名、邮箱为必填项，不可留空</li>
+            <li>密码长度请控制在6‑16位字符</li>
+            <li>手机号必须填写11位纯数字</li>
+        </ul>
+
+        <!-- 定义列表dl：常见问题 -->
+        <h2>常见问题</h2>
+        <dl>
+            <dt>头像上传支持什么类型？</dt>
+            <dd>支持图片文件，可同时选择多张图片上传</dd>
+            <dt>忘记密码如何处理？</dt>
+            <dd>通过注册填写的邮箱找回账号密码</dd>
+        </dl>
+
+        <!-- 注册须知表格，使用colspan合并单元格，thead、tbody -->
+        <h2>注册须知</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">用户注册协议</th>
+                </tr>
+                <tr>
+                    <th>项目</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>账号唯一性</td>
+                    <td>一个手机号仅可注册一个账号</td>
+                </tr>
+                <tr>
+                    <td>信息安全</td>
+                    <td>平台保护用户隐私，不会随意泄露个人信息</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 注册表单 -->
+        <form id="registerForm" action="#" method="post">
+            <p>
+                <label for="username">用户名：</label>
+                <input type="text" name="username" id="username" required>
+            </p>
+            <p>
+                <label for="password">密码：</label>
+                <input type="password" name="password" id="password" placeholder="6-16位字符">
+            </p>
+            <p>
+                <label for="confirmPassword">确认密码：</label>
+                <input type="password" name="confirmPassword" id="confirmPassword">
+            </p>
+            <p>
+                <!-- label第一种写法 for + id -->
+                <input type="radio" name="gender" id="male" value="male">
+                <label for="male">男</label>
+                <!-- label第二种写法 包裹式 -->
+                <label>
+                    <input type="radio" name="gender" value="female">女
+                </label>
+            </p>
+            <p>
+                <label for="birthday">出生日期：</label>
+                <input type="date" name="birthday" id="birthday">
+            </p>
+            <p>
+                <label for="email">邮箱：</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <p>
+                <label for="phone">手机号：</label>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{11}">
+            </p>
+            <p>
+                兴趣爱好：
+                <label><input type="checkbox" name="hobby" value="reading">阅读</label>
+                <label><input type="checkbox" name="hobby" value="game">游戏</label>
+                <label><input type="checkbox" name="hobby" value="sports">运动</label>
+            </p>
+            <p>
+                <label for="avatar">头像上传：</label>
+                <input type="file" name="avatar" id="avatar" accept="image/*" multiple>
+            </p>
+            <p>
+                <label for="city">所在城市：</label>
+                <select name="city" id="city">
+                    <option value="changde" selected>常德</option>
+                    <option value="changsha">长沙</option>
+                    <option value="zhuzhou">株洲</option>
+                </select>
+            </p>
+            <p>
+                <label for="bio">个人简介：</label><br>
+                <textarea name="bio" id="bio" rows="4" cols="50"></textarea>
+            </p>
+            <p>
+                <button type="submit">注册</button>
+                <button type="reset">重置</button>
+            </p>
+        </form>
+    </main>
+    <footer>
+        <p>© 2026 用户注册系统 版权所有</p>
+    </footer>
+
+    <script>
+        const regForm = document.getElementById('registerForm');
+        regForm.addEventListener('submit', function(e){
+            e.preventDefault(); //阻止页面跳转
+            const formData = new FormData(regForm);
+            console.log("--------表单提交数据--------");
+            for (let item of formData.entries()){
+                console.log(item[0], "：", item[1]);
+            }
+        })
+    </script>
+</body>
+</html>
