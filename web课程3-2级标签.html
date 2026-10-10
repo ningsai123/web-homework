@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>web课程3-2级标签</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+            background: #f5f5f5;
+        }
+    
+        .nav {
+            background: #1a237e;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .welcome,
+        .nav-list > li > a,
+        .submenu li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .welcome {
+            font-size: 15px;
+            padding-left: 10px;
+        }
+        .nav-list {
+            list-style: none;
+            display: flex;
+            margin-left: auto;
+        }
+        .nav-list > li {
+            position: relative;
+            margin-right: -1px;   
+        }
+        .nav-list > li > a {
+            display: block;
+            padding: 0 28px;
+            line-height: 50px;
+            font-size: 15px;
+            border-left: 1px solid #2c3aa8;
+            transition: background-color 0.2s ease;
+        }
+        .nav-list > li > a:hover {
+            background: #3949ab;
+        }
+
+        
+        .submenu {
+            visibility: hidden;      
+            opacity: 0;
+            position: absolute;
+            top: 100%;               
+            left: 0;
+            right: 0;                
+            background: #1a237e;
+            list-style: none;
+            z-index: 100;
+            transition: opacity 0.15s ease, visibility 0s linear 0.15s;  
+        }
+        
+        .nav-list > li:hover .submenu {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.15s ease, visibility 0s linear 0s;     
+        }
+        .submenu li a {
+            display: block;
+            padding: 10px 8px;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.4;
+            border-top: 1px solid #2c3aa8;
+            transition: background-color 0.2s ease;
+        }
+        .submenu li a:hover {
+            background: #3949ab;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="welcome">欢迎访问湖南文理学院</div>
+        <ul class="nav-list">
+
+           
+            <li>
+                <a href="#">教学院(部)</a>
+                <ul class="submenu">
+                    <li><a href="#">马克思主义学院</a></li>
+                    <li><a href="#">教育科学学院</a></li>
+                    <li><a href="#">文史与法学学院</a></li>
+                    <li><a href="#">外国语学院</a></li>
+                    <li><a href="#">经济与管理学院</a></li>
+                    <li><a href="#">地理科学与旅游学院</a></li>
+                    <li><a href="#">体育学院</a></li>
+                    <li><a href="#">音乐舞蹈学院</a></li>
+                    <li><a href="#">美术与设计学院</a></li>
+                    <li><a href="#">生命与环境科学学院</a></li>
+                    <li><a href="#">化学与材料工程学院</a></li>
+                    <li><a href="#">数理学院</a></li>
+                    <li><a href="#">计算机与电气工程学院</a></li>
+                    <li><a href="#">机械工程学院</a></li>
+                    <li><a href="#">土木建筑工程学院</a></li>
+                    <li><a href="#">国际学院</a></li>
+                    <li><a href="#">继续教育学院</a></li>
+                </ul>
+            </li>
+
+            
+            <li>
+                <a href="#">党群机构</a>
+                <ul class="submenu">
+                    <li><a href="#">纪委、监察专员办公室</a></li>
+                    <li><a href="#">党政办公室</a></li>
+                    <li><a href="#">组织部、党校</a></li>
+                    <li><a href="#">宣传统战部</a></li>
+                    <li><a href="#">教师工作部、人事处（人才工程办公室）</a></li>
+                    <li><a href="#">学生工作部、武装部</a></li>
+                    <li><a href="#">保卫部</a></li>
+                    <li><a href="#">中国教育工会湖南文理学院委员会</a></li>
+                    <li><a href="#">共青团湖南文理学院委员会</a></li>
+                </ul>
+            </li>
+
+            
+            <li>
+                <a href="#">行政教辅机构</a>
+                <ul class="submenu">
+                    <li><a href="#">教务处</a></li>
+                    <li><a href="#">发展规划与学科建设处</a></li>
+                    <li><a href="#">科技与社会服务处</a></li>
+                    <li><a href="#">研究生院</a></li>
+                    <li><a href="#">招生就业处</a></li>
+                    <li><a href="#">创新创业学院（工程训练中心）</a></li>
+                    <li><a href="#">教师工作部、人事处（人才工程办公室）</a></li>
+                    <li><a href="#">财务处（会计核算中心）</a></li>
+                    <li><a href="#">审计处</a></li>
+                    <li><a href="#">信息与现代教育技术中心</a></li>
+                    <li><a href="#">资产管理与招投标处</a></li>
+                    <li><a href="#">后勤基建处</a></li>
+                    <li><a href="#">教师发展中心</a></li>
+                    <li><a href="#">离退休工作处</a></li>
+                    <li><a href="#">期刊社</a></li>
+                    <li><a href="#">图书馆</a></li>
+                    <li><a href="#">校友联络服务中心</a></li>
+                </ul>
+            </li>
+
+           
+            <li>
+                <a href="#">信息系统</a>
+                <ul class="submenu">
+                    <li><a href="#">办事大厅</a></li>
+                    <li><a href="#">阳光服务平台</a></li>
+                    <li><a href="#">教务系统</a></li>
+                    <li><a href="#">科研系统</a></li>
+                    <li><a href="#">电子邮箱</a></li>
+                    <li><a href="#">网站投稿</a></li>
+                    <li><a href="#">文理学报投稿</a></li>
+                    <li><a href="#">武陵学刊投稿</a></li>
+                </ul>
+            </li>
+
+           
+            <li><a href="#">国际交流</a></li>
+
+           
+            <li><a href="#">数字图书馆</a></li>
+
+            
+            <li><a href="#">采购信息</a></li>
+
+            
+            <li><a href="#">办事大厅</a></li>
+
+        </ul>
+    </nav>
+</body>
+</html>
