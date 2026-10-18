@@ -1,0 +1,538 @@
+/* =========================================================
+   实验4 CSS布局实战 —— 网站首页样式
+   外部样式表：index.css（配合 base.css 使用，不修改页面结构）
+   布局要点：Flex 搭骨架 · Grid 排卡片 · position 定位 · transition/transform 动效 · 媒体查询响应式
+   ========================================================= */
+/* ---------------- 版心居中 ---------------- */
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+/* 页面背景；固定导航栏需要给 body 预留高度，防止内容被遮挡 */
+body {
+  background-color: #f3f5f7;
+  padding-top: 110px;
+}
+/* ---------------- header区域 ---------------- */
+.header {
+  /* position: fixed —— 固定导航栏，始终吸附在页面顶部 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 110px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.header .wrapper {
+  /* Flex —— 一维排布 logo / 导航 / 搜索 / 用户 */
+  display: flex;
+  padding-top: 29px;
+}
+/* logo */
+.logo a {
+  display: block;
+  width: 195px;
+  height: 81px;
+  background: url(../images/logo.png) no-repeat left center;
+  /* font-size: 0 —— 隐藏文字，只显示背景图片 */
+  font-size: 0;
+}
+/* 导航 */
+.nav {
+  margin-left: 70px;
+}
+.nav ul {
+  display: flex;
+}
+.nav li {
+  margin-right: 25px;
+}
+.nav li a {
+  display: block;
+  padding: 7px 9px;
+  font-size: 20px;
+  line-height: 27px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.nav li .active,
+.nav li a:hover {
+  border-bottom: 2px solid #00a4ff;
+}
+/* 搜索 */
+.search {
+  display: flex;
+  width: 430px;
+  height: 45px;
+  margin-left: 50px;
+  padding-left: 20px;
+  padding-right: 12px;
+  background-color: #f3f5f7;
+  border-radius: 20px;
+}
+.search input {
+  /* flex: 1 —— 输入框自动占满剩余空间 */
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+/* ::placeholder —— 占位文字样式 */
+.search input::placeholder {
+  font-size: 13px;
+  color: #999;
+}
+.search a {
+  align-self: center;
+  width: 16px;
+  height: 16px;
+  background: url(../images/search.png) no-repeat center;
+}
+/* 用户 */
+.user {
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.user a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.user span {
+  font-size: 16px;
+  color: #666;
+}
+/* ---------------- 横幅区域banner ---------------- */
+.banner {
+  height: 420px;
+  background-color: #0092cb;
+}
+.banner .wrapper {
+  /* position: relative —— 作为内部绝对定位元素的参照物 */
+  position: relative;
+  height: 420px;
+  background: url(../uploads/banner.png) no-repeat center;
+  /* Grid？这里用 Flex 排左侧导航与右侧课程表 */
+  display: flex;
+}
+/* banner-侧导航 */
+.banner .left {
+  width: 191px;
+  height: 420px;
+  padding: 3px 20px;
+  /* rgba 背景色，0.42 即 42% 透明度 */
+  background-color: rgba(0, 0, 0, 0.42);
+}
+.banner .left a {
+  display: block;
+  height: 45px;
+  font-size: 16px;
+  line-height: 45px;
+  color: #fff;
+  /* 背景图标靠右垂直居中，不重复平铺 */
+  background: url(../images/right.png) no-repeat right center;
+  transition: color 0.3s, transform 0.3s;
+}
+.banner .left a:hover {
+  color: #00a4ff;
+  background-image: url(../images/right-hover.png);
+  transform: translateX(5px);
+}
+/* banner - 课程表 */
+.banner .right {
+  /* position: absolute —— 相对 .banner .wrapper 定位到右侧 */
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 220px;
+  height: 310px;
+  background-color: #209dd5;
+  border-radius: 10px;
+}
+.banner .right h3 {
+  margin-left: 15px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 50px;
+  color: #fff;
+}
+.banner .right .content {
+  height: 260px;
+  padding: 12px 15px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+.banner .right dl {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #999;
+}
+.banner .right dt {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.banner .right dd {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.banner .right dd span {
+  color: #00a4ff;
+}
+.banner .right dd strong {
+  font-weight: 400;
+  color: #7d7d7d;
+}
+.banner .right .content > a {
+  display: block;
+  height: 35px;
+  font-size: 14px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  background-color: #00a4ff;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+}
+.banner .right .content > a:hover {
+  background-color: #0089d6;
+}
+/* ---------------- 精品推荐 ---------------- */
+.recommend {
+  display: flex;
+  height: 60px;
+  margin-top: 12px;
+  padding: 0 20px;
+  font-size: 18px;
+  line-height: 60px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(211, 211, 211, 0.5);
+}
+.recommend h3 {
+  font-weight: 400;
+  color: #00a4ff;
+}
+.recommend ul {
+  flex: 1;
+  display: flex;
+}
+.recommend ul li a {
+  padding: 0 25px;
+  border-right: 1px solid #999;
+  transition: color 0.3s;
+}
+.recommend ul li:last-child a {
+  border-right: 0;
+}
+.recommend ul li a:hover {
+  color: #00a4ff;
+}
+.recommend .modify {
+  color: #00a4ff;
+}
+/* ---------------- 模块标题 hd（精品课程 / 学科课程 共用） ---------------- */
+.hd {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  line-height: 60px;
+}
+.hd h3 {
+  font-size: 22px;
+  font-weight: 400;
+}
+.hd .more {
+  padding-right: 20px;
+  font-size: 15px;
+  color: #999;
+  background: url(../images/more.png) no-repeat right center;
+  transition: color 0.3s;
+}
+.hd .more:hover {
+  color: #00a4ff;
+}
+.hd ul {
+  display: flex;
+}
+.hd li {
+  margin-left: 60px;
+  font-size: 16px;
+}
+.hd li a {
+  transition: color 0.3s;
+}
+.hd li .active,
+.hd li a:hover {
+  color: #00a4ff;
+}
+/* ---------------- 精品课程course - 标题 ---------------- */
+/* 标题样式由上方 .hd 统一提供 */
+/* ---------------- 精品课程course - 内容 ---------------- */
+.course {
+  margin-top: 10px;
+}
+.course .bd ul {
+  /* Grid —— 二维网格排布课程卡片，5 列等分 */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+/* ---------------- 课程卡片（精品课程与学科课程共用） ---------------- */
+.course .bd li,
+.subject .bd .bottom li {
+  height: 270px;
+  background-color: #e2e5e8;
+  border-radius: 6px;
+  overflow: hidden;
+  /* transition —— 悬停时平滑过渡 */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+/* transform —— 卡片悬停上浮 + 阴影，产生交互反馈 */
+.course .bd li:hover,
+.subject .bd .bottom li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.course .bd li a,
+.subject .bd .bottom li a {
+  display: block;
+  height: 100%;
+}
+.course .bd .pic,
+.subject .bd .bottom .pic {
+  height: 156px;
+}
+.course .bd .pic img,
+.subject .bd .bottom .pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.course .bd .txt,
+.subject .bd .bottom .txt {
+  height: 114px;
+  padding: 20px;
+  background-color: #fff;
+}
+.course .bd .txt h4,
+.subject .bd .bottom .txt h4 {
+  height: 40px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.course .bd .txt p,
+.subject .bd .bottom .txt p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+}
+.course .bd .txt p span,
+.subject .bd .bottom .txt p span {
+  color: orange;
+}
+.course .bd .txt p i,
+.subject .bd .bottom .txt p i {
+  font-style: normal;
+}
+/* ---------------- 学科课程-前端开发标题 ---------------- */
+/* 标题样式复用 .hd，此处略 */
+/* ---------------- 学科课程-前端开发内容 ---------------- */
+.subject {
+  margin-top: 20px;
+}
+.subject .bd {
+  /* Flex —— 左右两栏：左侧大图 + 右侧（顶部横幅 + 底部卡片） */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.subject .bd .left {
+  width: 228px;
+}
+.subject .bd .left img {
+  display: block;
+  width: 100%;
+}
+.subject .bd .right {
+  width: 957px;
+}
+.subject .bd .right .top {
+  height: 100px;
+  margin-bottom: 15px;
+}
+.subject .bd .right .top img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.subject .bd .bottom ul {
+  /* Grid —— 底部 4 张卡片等分排列 */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+/* ---------------- 版权区域rights ---------------- */
+.rights {
+  height: 275px;
+  margin-top: 30px;
+  padding-top: 30px;
+  background-color: #fff;
+}
+.rights .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.rights .left {
+  width: 500px;
+}
+.rights .left img {
+  display: block;
+  width: 195px;
+}
+.rights .left p {
+  margin-top: 5px;
+  padding-top: 5px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #999;
+}
+.rights .left .download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 35px;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #00a4ff;
+  border: 2px solid #00a4ff;
+  transition: color 0.3s, background-color 0.3s;
+}
+.rights .left .download:hover {
+  color: #fff;
+  background-color: #00a4ff;
+}
+.rights .right {
+  display: flex;
+}
+.rights .right dl {
+  margin-left: 100px;
+}
+.rights .right dt {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+}
+.rights .right a {
+  font-size: 14px;
+  line-height: 25px;
+  color: #666;
+}
+.rights .right a:hover {
+  color: #00a4ff;
+}
+/* ---------------- 响应式设计（媒体查询） ---------------- */
+/* 中等屏幕：版心改为自适应宽度 */
+@media (max-width: 1220px) {
+  .wrapper {
+    width: 100%;
+    padding: 0 16px;
+  }
+  .banner .wrapper {
+    display: flex;
+    padding: 0;
+  }
+  .course .bd ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .recommend ul {
+    flex-wrap: wrap;
+  }
+  .recommend ul li a {
+    padding: 0 15px;
+  }
+}
+/* 移动端：卡片由 5 列变 2 列 */
+@media (max-width: 768px) {
+  .search {
+    display: none;
+  }
+  .logo a {
+    width: 130px;
+    height: 54px;
+    background-size: 130px 54px;
+  }
+  .nav {
+    margin-left: 20px;
+  }
+  .nav li a {
+    padding: 4px 6px;
+    font-size: 16px;
+  }
+  .user {
+    margin-left: auto;
+  }
+  .banner,
+  .banner .wrapper {
+    height: auto;
+  }
+  .banner .wrapper {
+    display: block;
+    padding: 16px;
+  }
+  .banner .left {
+    width: 100%;
+    height: auto;
+  }
+  .banner .right {
+    position: static;
+    width: 100%;
+    margin-top: 16px;
+  }
+  /* 卡片 5 列 → 2 列 */
+  .course .bd ul,
+  .subject .bd .bottom ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .subject .bd {
+    display: block;
+  }
+  .subject .bd .left,
+  .subject .bd .right {
+    width: 100%;
+  }
+  .recommend {
+    height: auto;
+    padding: 10px 16px;
+    line-height: 1.8;
+  }
+  .rights {
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .rights .wrapper {
+    flex-direction: column;
+  }
+  .rights .left {
+    width: 100%;
+  }
+  .rights .right {
+    flex-wrap: wrap;
+  }
+  .rights .right dl {
+    margin-left: 0;
+    margin-right: 40px;
+  }
+}
